@@ -8,10 +8,31 @@ function App() {
   const [ironhackersList, setIronhackersList] = useState(users)
   console.log(users)
 
+
+  const filterBySearch = (searchQuery) => {
+    const filteredUsers = users.filter(ironhacker => {
+      return ironhacker.firstName.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        ironhacker.lastName.toLowerCase().includes(searchQuery.toLowerCase())
+    });
+
+    console.log('filteredUsers: ', filteredUsers)
+    setIronhackersList([...filteredUsers])
+  }
+
+
+  // creating checkbox
+
+
   return (
     <div className="App">
       <div className="ironhackersTable">
       <h1>Iron Book</h1>
+      <>
+        <label htmlFor="search">Search by Name</label>
+        <input type="text" onChange={e => filterBySearch(e.target.value)}/>
+      </>
+      <label>Student</label>
+      <input type="checkbox" id="check" ></input>
       <table>
       <tbody>
         <tr>
